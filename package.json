@@ -1,7 +1,7 @@
 {
-  "name": "openclaw",
-  "version": "2026.3.3",
-  "description": "Multi-channel AI gateway with extensible messaging integrations",
+  "name": "@termix-it/cryptoclaw",
+  "version": "1.0.2",
+  "description": "Private crypto AI assistant — wallet management, DeFi, NFTs, and multi-chain operations from your terminal",
   "keywords": [],
   "homepage": "https://github.com/openclaw/openclaw#readme",
   "bugs": {
