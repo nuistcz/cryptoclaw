@@ -7,9 +7,7 @@
   "dependencies": {
     "viem": "^2.27.2"
   },
-  "devDependencies": {
-    "@termix-it/cryptoclaw": "workspace:*"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "@termix-it/cryptoclaw": "*"
   }
