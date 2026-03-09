@@ -153,6 +153,12 @@ export type OnboardOptions = {
   /** @deprecated Legacy alias for `skipChannels`. */
   skipProviders?: boolean;
   skipSkills?: boolean;
+  skipWallet?: boolean;
+  /** Non-interactive: create a new wallet during onboarding (requires CRYPTOCLAW_WALLET_PASSPHRASE). */
+  walletCreate?: boolean;
+  /** Non-interactive: import an existing wallet during onboarding (requires CRYPTOCLAW_WALLET_PRIVATE_KEY + CRYPTOCLAW_WALLET_PASSPHRASE). */
+  walletImport?: boolean;
+  walletLabel?: string;
   skipHealth?: boolean;
   skipUi?: boolean;
   nodeManager?: NodeManagerChoice;

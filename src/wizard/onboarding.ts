@@ -480,6 +480,55 @@ export async function runOnboardingWizard(
     nextConfig = await setupSkills(nextConfig, workspaceDir, runtime, prompter);
   }
 
+  // Show built-in crypto skills
+  await prompter.note(
+    [
+      "The following crypto skills are pre-installed and ready to use:",
+      "",
+      "  🪙  wallet-manager   — Create, import, manage EVM wallets",
+      "  🔄  token-swap       — DEX swaps on Uniswap / PancakeSwap",
+      "  📊  market-data      — Real-time prices, charts, trending",
+      "  💼  portfolio-tracker — Multi-chain portfolio overview",
+      "  🐳  whale-watcher    — Track large on-chain transactions",
+      "  🔍  gas-tracker      — Gas prices across EVM chains",
+      "  🖼   nft-manager      — NFT portfolio and transfers",
+      "  🟡  binance-spot     — Binance spot trading (API key required)",
+      "  📡  binance-trading-signal — Smart money signals",
+      "  🔒  binance-token-audit   — Honeypot & security checks",
+      "",
+      "Talk to your agent to activate them, e.g.:",
+      '  "Show my wallet balance"',
+      '  "Swap 0.1 ETH for USDC on BSC"',
+      '  "Check gas prices"',
+    ].join("\n"),
+    "Crypto Skills",
+  );
+
+  // Wallet setup
+  if (opts.skipWallet) {
+    await prompter.note("Skipping wallet setup.", "Wallet");
+  } else {
+    const { setupWallet } = await import("../commands/onboard-wallet.js");
+    const walletResult = await setupWallet(workspaceDir, prompter, {
+      walletCreate: opts.walletCreate,
+      walletImport: opts.walletImport,
+      walletLabel: opts.walletLabel,
+      skipWallet: opts.skipWallet,
+    });
+    if (walletResult.action === "created" || walletResult.action === "imported") {
+      await prompter.note(
+        [
+          `Address: ${walletResult.address}`,
+          `Label:   ${walletResult.label}`,
+          "",
+          "Your private key is encrypted with AES-256-GCM and stored locally.",
+          "Manage wallets anytime with: cryptoclaw wallet list",
+        ].join("\n"),
+        "Wallet ready",
+      );
+    }
+  }
+
   // Setup hooks (session memory on /new)
   const { setupInternalHooks } = await import("../commands/onboard-hooks.js");
   nextConfig = await setupInternalHooks(nextConfig, runtime, prompter);
