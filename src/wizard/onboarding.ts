@@ -12,6 +12,7 @@ import {
   resolveGatewayPort,
   writeConfigFile,
 } from "../config/config.js";
+import { resolveStateDir } from "../config/paths.js";
 import { normalizeSecretInputString } from "../config/types.secrets.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { defaultRuntime } from "../runtime.js";
@@ -539,7 +540,7 @@ export async function runOnboardingWizard(
     await prompter.note("Skipping wallet setup.", "Wallet");
   } else {
     const { setupWallet } = await import("../commands/onboard-wallet.js");
-    const walletResult = await setupWallet(workspaceDir, prompter, {
+    const walletResult = await setupWallet(resolveStateDir(), prompter, {
       walletCreate: opts.walletCreate,
       walletImport: opts.walletImport,
       walletLabel: opts.walletLabel,
