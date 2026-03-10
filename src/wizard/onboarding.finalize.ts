@@ -330,10 +330,10 @@ export async function finalizeOnboardingWizard(
     await prompter.note(
       [
         "Gateway token: shared auth for the Gateway + Control UI.",
-        "Stored in: ~/.openclaw/openclaw.json (gateway.auth.token) or OPENCLAW_GATEWAY_TOKEN.",
+        "Stored in: ~/.cryptoclaw/cryptoclaw.json (gateway.auth.token) or OPENCLAW_GATEWAY_TOKEN.",
         `View token: ${formatCliCommand("openclaw config get gateway.auth.token")}`,
         `Generate token: ${formatCliCommand("openclaw doctor --generate-gateway-token")}`,
-        "Web UI stores a copy in this browser's localStorage (openclaw.control.settings.v1).",
+        "Web UI stores a copy in this browser's localStorage (cryptoclaw.control.settings.v1).",
         `Open the dashboard anytime: ${formatCliCommand("openclaw dashboard --no-open")}`,
         "If prompted: paste the token into Control UI settings (or use the tokenized dashboard URL).",
       ].join("\n"),
@@ -383,8 +383,8 @@ export async function finalizeOnboardingWizard(
         [
           `Dashboard link (with token): ${authedUrl}`,
           controlUiOpened
-            ? "Opened in your browser. Keep that tab to control OpenClaw."
-            : "Copy/paste this URL in a browser on this machine to control OpenClaw.",
+            ? "Opened in your browser. Keep that tab to control CryptoClaw."
+            : "Copy/paste this URL in a browser on this machine to control CryptoClaw.",
           controlUiOpenHint,
         ]
           .filter(Boolean)
@@ -444,8 +444,8 @@ export async function finalizeOnboardingWizard(
       [
         `Dashboard link (with token): ${authedUrl}`,
         controlUiOpened
-          ? "Opened in your browser. Keep that tab to control OpenClaw."
-          : "Copy/paste this URL in a browser on this machine to control OpenClaw.",
+          ? "Opened in your browser. Keep that tab to control CryptoClaw."
+          : "Copy/paste this URL in a browser on this machine to control CryptoClaw.",
         controlUiOpenHint,
       ]
         .filter(Boolean)
@@ -495,10 +495,10 @@ export async function finalizeOnboardingWizard(
 
   await prompter.outro(
     controlUiOpened
-      ? "Onboarding complete. Dashboard opened; keep that tab to control OpenClaw."
+      ? "Onboarding complete. Dashboard opened; keep that tab to control CryptoClaw."
       : seededInBackground
         ? "Onboarding complete. Web UI seeded in the background; open it anytime with the dashboard link above."
-        : "Onboarding complete. Use the dashboard link above to control OpenClaw.",
+        : "Onboarding complete. Use the dashboard link above to control CryptoClaw.",
   );
 
   return { launchedTui };
