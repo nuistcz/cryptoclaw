@@ -364,7 +364,7 @@ async function runPluginInstallCommand(params: {
 export function registerPluginsCli(program: Command) {
   const plugins = program
     .command("plugins")
-    .description("Manage OpenClaw plugins and extensions")
+    .description("Manage CryptoClaw plugins and extensions")
     .addHelpText(
       "after",
       () =>
